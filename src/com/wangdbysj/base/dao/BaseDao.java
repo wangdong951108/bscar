@@ -82,7 +82,8 @@ public interface BaseDao<T> {
 //	 */
 	public void updateByHql(String hql, Object[] args);
 	public void updateByHql(String hql, Object arg);
-	public void updateByHql(String hql);
+	public void updateByHql(String hql); 
+	
 //	/**
 //	 * 基于sql查询
 //	 * @param sql

@@ -196,6 +196,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			json.put("data", 3); // 无此用户
 		} else {
 			try {
+
 				String code = aIndustrySMSa.execute(user.getPhone());
 				if (code.equals("1")) {// 验证失败
 					json.put("data", 1);
@@ -213,11 +214,41 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		out.write(json.toString());
 	}
 
-	
+	// 注册时 手机获取验证
+	public void getCodeOnReg() throws IOException {
+		IndustrySMS aIndustrySMSa = new IndustrySMS();
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		resp.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = null;
+		JSONObject json = new JSONObject();
+		// 验证手机是否存在
+		User user1 = userService.getUserPhone(user);
+		if (user1 == null) {
+			try {
+				String code = aIndustrySMSa.execute(user.getPhone());
+				if (code.equals("1")) {// 获取失败
+					json.put("data", 1);
+				} else {// 获取成功
+					session.setAttribute("code", code); // 将验证码保存在session中
+					session.setAttribute("phone", user.getPhone());
+					json.put("data", 2);
+				}
+			} catch (Exception e) {
+				json.put("code", 0);
+				e.printStackTrace();
+			}
+		} else {
+			json.put("data", 3); // 此手机号已经存在
+		}
+		out = resp.getWriter();
+		out.write(json.toString());
+	}
+
 	/**
 	 * 实名认证
 	 * 
-	 * */
+	 */
 	public void dcardAudit() throws Exception {
 		JSONObject json = new JSONObject();
 		PrintWriter out = null;
@@ -232,7 +263,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			json.put("date", 3); // 此用户已注册
 		} else {
 			org.json.JSONObject dcardAudit = new IdcardAudit().dcardAudit(user.getEmail(), user.getRealName());
-			if ((Integer) dcardAudit.get("code")==0) {
+			if ((Integer) dcardAudit.get("code") == 0) {
 				json.put("data", 1); // 验证成功
 			} else {
 				json.put("data", 2); // 验证失败
@@ -391,7 +422,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			sb.append(" and loginName like :loginName");
 			alias.put("loginName", "%" + user.getLoginName() + "%");
 		}
-		if (user.getPhone()!=null && !user.getPhone().equals("")) {
+		if (user.getPhone() != null && !user.getPhone().equals("")) {
 			sb.append("and phone =:phone ");
 			alias.put("phone", user.getPhone());
 		}

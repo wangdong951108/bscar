@@ -74,7 +74,7 @@ BUI.use('common/main',function(){
                     "href": "${ctx}/order_tongji.do"
                 } ,{
                 	"id":"402",
-                	"text":"利润折线图",
+                	"text":"利润统计图",
                 	"href":"${ctx}/order_tongjitu.do"
                 }         
             ]

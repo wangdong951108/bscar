@@ -65,33 +65,35 @@
 		<div class="account">
 			<h2 class="account-in">修改个人信息</h2>
 				<div>
-					<span>用户名&nbsp;&nbsp;&nbsp;</span>
-				    ${user.loginName}
+					<span>用户名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="text" name="phone" id="loginName" value="${user.loginName}" >
+				    
 				</div> 	
 				<div>			
-					<span>姓&nbsp;&nbsp;名&nbsp;&nbsp;</span>
-					${user.realName}
+					<span>姓&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="text" name="phone" id="phone" value="${user.realName}"  readonly="readonly">
+					
 				</div>	
 				<div> 
 					<span>手机号码&nbsp;&nbsp;</span>
-					<input type="text" name="phone" id="phone" value="${user.phone}" >
+					<input type="text" name="phone" id="phone" value="${user.phone}" readonly="readonly" >
 				</div>	
 				<div> 
 					<span>电子邮箱&nbsp;&nbsp;</span>
-					<input type="text" name="email" id="email" value="${user.email}" >
+					<input type="text" name="email" id="email" value="${user.email}" readonly="readonly">
 				</div>		
 				<div> 
 					<span>联系地址&nbsp;&nbsp;</span>
 					<input type="text" name="address" id="address" value="${user.address}" >
 				</div>			
-				<div> 
+				<%-- <div> 
 					<span>找回密码问题</span>
 					<input type="text" name="question" id="question" value="${user.question}">
 				</div>	
 				<div> 
 					<span>找回密码答案</span>
 					<input type="text" name="answer" id="answer" value="${user.answer}">
-				</div>				
+				</div>	 --%>			
 					<input type="submit" value="修改个人信息" style="margin-left: 129px;" onclick="exUpdateMyInfo();"/> 
 		</div>
 	</div>

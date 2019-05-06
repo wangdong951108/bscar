@@ -105,9 +105,13 @@
 					id="phone" onblur="checkPhone()">
 				<td align="center"><span id="phoneyz"></span></td>
 			</div>
-
 			<div>
-				<span>地 址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <input
+				<span>验证码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <input type="text"
+					name="phone" id="code" onblur="chagecode()">
+				<td align="center"><span id="codeyz"></span></td>
+			</div>
+			<div>
+				<span>地 址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <input
 					type="text" name="address" id="address">
 				<td align="center"><span id="addressyz"></span></td>
 			</div>
@@ -127,7 +131,6 @@
 				$().UItoTop({
 					easingType : 'easeOutQuart'
 				});
-		
 			});
 		</script>
 		<a href="#" id="toTop" style="display: block;"> <span
@@ -152,12 +155,85 @@
 	function checkPhone() {
 		var phone = $("#phone").val();
 		if (!(/^1[34578]\d{9}$/.test(phone))) {
-			$("#phoneyz").html("<font color='red'>请输入正确的手机号</font>");
+			$("#Phonepk").html("<font color='red'>请输入有效的手机号码！</font>");
 			return;
 		} else {
 			$("#phoneyz").html("<font color='red'> </font>");
+			alert("ces")
+			/* --------------------------------------------------------------------- */
+			$.ajax({
+				type : "POST", // 用POST方式传输
+				dataType : "json", // 数据格式:JSON
+				url : ctx + '/user_getCodeOnReg.do', // 目标地址
+				data : {
+					phone : phone
+				},
+				success : function(data) {
+					if (data.data == 2) {
+						$("#phoneyz").html("<font color='#339933'>√ 短信验证码已发到您的手机,请查收</font>");
+					} else if (data.data == 0) {
+						$("#phoneyz").html("<font color='red'>× 短信验证码发送失败，请重新发送</font>");
+					} else if (data.data == 1) {
+						$("#phoneyz").html("<font color='red'>此号码1小时内发送次数应小于4次</font>");
+					} else if (data.data == 3) {
+						$("#phoneyz").html("<font color='red'>号码已经被注册过了</font>");
+					}
+				}
+			});
 		}
+
 	}
+	//验证码验证		
+	function chagecode() {
+		var phone = $("#phone").val();
+		var btnSendCode = $("#code").val();
+
+		if (!(/^1[34578]\d{9}$/.test(phone))) {
+			$("#phoneyz").html("<font color='red'>请输入有效的手机号码！</font>");
+			return;
+		} else {
+			$("#phoneyz").html("<font color='red'> </font>");
+			if (phone == "" || phone == null) {
+				$("#phoneyz").html("<font color='red'>请填写手机号</font>");
+				return;
+			} else {
+				$("#phoneyz").html("<font color='red'> </font>");
+				if (btnSendCode == "" || btnSendCode == null) {
+					$("#codeyz").html("<font color='red'>请填写验证码</font>");
+					return;
+				}
+				$("#codeyz").html("<font color='red'></font>");
+				$.ajax({
+					type : "POST", // 用POST方式传输
+					dataType : "json", // 数据格式:JSON
+					url : ctx + '/user_changeCode12.do', // 目标地址"
+					data : {
+						phone : phone,
+						passWord : btnSendCode
+					},
+					success : function(data) {
+						if (data.data == 2) {
+							$("#codeyz").html("<font color='red'>验证成功</font>");
+						} else if (data.data == 1) {
+							$("#codeyz").html("<font color='red'>×短信验证码不正确请重新输入</font>");
+						} else if (data.data == 0) {
+							$("#codeyz").html("<font color='red'>×请输入验证码</font>");
+						}
+					}
+				})
+
+			}
+		}
+
+	}
+
+
+	/* --------------------------------------------------------------------- */
+
+
+
+
+
 	// 验证真实姓名 
 	function checkname() {
 		var email = $("#email").val();
@@ -257,7 +333,7 @@
 										realName : realName,
 										phone : phone,
 										address : address,
-										email : email						
+										email : email
 									},
 									async : false,
 									success : function(data) {

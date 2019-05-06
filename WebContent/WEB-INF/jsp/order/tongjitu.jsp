@@ -130,8 +130,7 @@ td {
 							},
 							magicType : {
 								show : true,
-								type : [ 'line', 'bar', 'stack',
-									'tiled' ]
+								type : [ 'line', 'bar'/* , 'stack','tiled' */ ]
 							},
 							restore : {
 								show : true
@@ -153,7 +152,6 @@ td {
 						boundaryGap : false,
 						name : '日期',
 						data : month
-						//data:[1,2]
 					},
 					yAxis : {
 						type : 'value',
@@ -163,7 +161,6 @@ td {
 						name : '金额',
 						type : 'line',
 						data : price
-						//data:[1,2]
 					} ]
 				};
 				if (option && typeof option === "object") {

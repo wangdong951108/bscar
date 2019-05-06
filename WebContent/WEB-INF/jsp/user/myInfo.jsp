@@ -84,14 +84,14 @@
 					<span>联系地址&nbsp;&nbsp;</span>
 					${user.address}
 				</div>			
-				<div> 
+				<%-- <div> 
 					<span>找回密码问题</span>
 					${user.question}
 				</div>	
 				<div> 
 					<span>找回密码答案</span>
 					${user.answer}
-				</div>				
+				</div>				 --%>
 					<input type="submit" value="修改密码" style="margin-left: 129px;" onclick="updatePassWord();"/> 
 					<input type="submit" value="修改个人信息" style="margin-left: 129px;" onclick="updateMyInfo();"/> 
 		</div>

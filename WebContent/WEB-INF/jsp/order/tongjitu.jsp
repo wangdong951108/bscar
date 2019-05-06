@@ -22,8 +22,7 @@
 <script type="text/javascript"
 	src="${ctx}/resource/js/echarts/echarts-all.js"></script>
 <script src="${ctx}/resource/js/jquery.datetimepicker.js"></script>
-<script src="${ctx}/resource/js/echarts.js"></script>
-<script src="${ctx}/resource/js/echarts1.js"></script>
+<script type="text/javascript" src ="${ctx}/resource/js/echarts.js"></script>
 </head>
 <style type="text/css">
 body {
@@ -48,68 +47,7 @@ td {
 }
 </style>
 <body>
-	<table class="table table-bordered table-hover definewidth m10"
-		align="center">
-		<thead>
-			<tr>
-				<th>月份</th>
-				<th>利润</th>
-			</tr>
-		</thead>
-		<c:forEach items="${list}" var="list" varStatus="l">
-			<tr>
-				<c:if test="${list.month!=null}">
-					<td>${list.month}</td>
-					<td>￥${list.price}</td>
-				</c:if>
-			</tr>
-		</c:forEach>
-	</table>
-	<!-- <div id="main" style="width:80%;height: 70%"></div> -->
-
-
-	<!--  <div class="panel-foot text-center"> -->
-	<%--       <pg:pager  url="${ctx}/order_order.do" maxIndexPages="5" items="${pagers.total}"  maxPageItems="15" export="curPage=pageNumber" > --%>
-	<%-- 		<pg:last>   --%>
-	<%-- 			共${pagers.total}记录,共${pageNumber}页,   --%>
-	<%-- 		</pg:last>   --%>
-	<%-- 			当前第${curPage}页  --%>
-
-	<%--         <pg:first>   --%>
-	<%--     		<a href="${pageUrl}">首页</a>   --%>
-	<%-- 		</pg:first>   --%>
-	<%-- 		<pg:prev>   --%>
-	<%--     		<a href="${pageUrl}">上一页</a>   --%>
-	<%-- 		</pg:prev>   --%>
-
-	<%--        	<pg:pages>   --%>
-	<%--         	<c:choose>   --%>
-	<%--             	<c:when test="${curPage eq pageNumber}">   --%>
-	<%--                 	<font color="red">[${pageNumber }]</font>   --%>
-	<%--             	</c:when>   --%>
-	<%--             	<c:otherwise>   --%>
-	<%--                		<a href="${pageUrl}">${pageNumber}</a>   --%>
-	<%--             	</c:otherwise>   --%>
-	<%--         	</c:choose>   --%>
-	<%--     	</pg:pages> --%>
-
-	<%--         <pg:next>   --%>
-	<%--     		<a href="${pageUrl}">下一页</a>   --%>
-	<%-- 		</pg:next>   --%>
-	<%-- 		<pg:last>   --%>
-	<%-- 			<c:choose>   --%>
-	<%--             	<c:when test="${curPage eq pageNumber}">   --%>
-	<!--                 	<font color="red">尾页</font>   -->
-	<%--             	</c:when>   --%>
-	<%--             	<c:otherwise>   --%>
-	<%--                		<a href="${pageUrl}">尾页</a>   --%>
-	<%--             	</c:otherwise>   --%>
-	<%--         	</c:choose>  --%>
-
-	<%-- 		</pg:last> --%>
-	<%-- 	</pg:pager> --%>
-	<!--     </div> -->
-
+	<div id="main" style="width:80%;height: 70%"></div>
 </body>
 <script>
 	$(function() {
@@ -144,20 +82,21 @@ td {
 		lang : 'ch',
 	});
 
-/* 
+
 	$(function() {
 		var price = [];
 		var month = [];
 		$.ajax({
-			url : '${ctx}/order_tongjitu.do',
+			url : '${ctx}/order_tongjitu1.do',
 			type : 'post',
 			dataType : 'json',
 			success : function(data) {
 
-				for (var i = 0; i < data.length; i++) {
-					price[i] = data[i].price;
-					month[i] = data[i].month;
-				}
+				 for (var i = 0; i < data.length; i++) {
+					 price[i] = data[i].price;
+					month[i] = data[i].month; 
+					
+				} 
 				var myChart = echarts.init(document.getElementById('main'));
 				var app = {};
 				option = null;
@@ -214,6 +153,7 @@ td {
 						boundaryGap : false,
 						name : '日期',
 						data : month
+						//data:[1,2]
 					},
 					yAxis : {
 						type : 'value',
@@ -223,6 +163,7 @@ td {
 						name : '金额',
 						type : 'line',
 						data : price
+						//data:[1,2]
 					} ]
 				};
 				if (option && typeof option === "object") {
@@ -232,5 +173,5 @@ td {
 		});
 
 
-	}); */
+	});
 </script>

@@ -578,7 +578,7 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 		ActionContext.getContext().put("list", list);
 		return SUCCESS;
 	}
-	public void  tongjitu() throws Exception{
+	public void  tongjitu1() throws Exception{
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -586,7 +586,12 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
         @SuppressWarnings("static-access")
 		JSONArray fromObject = new  JSONArray().fromObject(list);
 		out.write(fromObject.toString());
-	
+		/*ActionContext.getContext().put("data", fromObject);
+		return SUCCESS;*/
+	}
+	public String tongjitu() throws Exception{
+		
+		return SUCCESS;
 	}
 
 	// =============公=======共=======方=======法==========区=========end============//

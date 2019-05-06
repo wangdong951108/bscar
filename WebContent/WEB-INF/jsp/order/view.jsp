@@ -118,7 +118,7 @@
         <td>${order.user.phone}</td>
     </tr>
       <tr>
-        <td width="10%" class="tableleft">电子邮箱</td>
+        <td width="10%" class="tableleft">身份证号</td>
         <td>${order.user.email}</td>
     </tr>
      <tr>

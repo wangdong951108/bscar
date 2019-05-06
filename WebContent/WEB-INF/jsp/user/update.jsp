@@ -69,17 +69,17 @@
     </tr>
     <tr>
         <td width="10%" class="tableleft">手机号</td>
-        <td><input type="text" name="phone" id="phone" value="${user.phone}"/></td>
+        <td><input type="text" name="phone" id="phone" value="${user.phone}" /></td>
     </tr>
     <tr>
-        <td width="10%" class="tableleft">邮箱</td>
-        <td><input type="text" name="email" id="email" value="${user.email}"/></td>
+        <td width="10%" class="tableleft">身份证号</td>
+        <td><input type="text" name="email" id="email" value="${user.email}" readonly="readonly"/></td>
     </tr>
     <tr>
         <td width="10%" class="tableleft">联系地址</td>
         <td><input type="text" name="address" id="address" value="${user.address}"/></td>
     </tr>
-    <tr>
+   <%--  <tr>
         <td width="10%" class="tableleft">找回密码问题</td>
         <td><input type="text" name="question" id="question" value="${user.question}"/></td>
     </tr>
@@ -87,7 +87,7 @@
         <td width="10%" class="tableleft">找回密码答案</td>
         <td><input type="text" name="answer" id="answer" value="${user.answer}"/></td>
     </tr>
-    <tr>
+    <tr> --%>
         <td class="tableleft"></td>
         <td>
             <button type="button" class="btn btn-primary" id="save" type="button">保存</button> &nbsp;&nbsp;

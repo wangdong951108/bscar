@@ -159,7 +159,6 @@
 			return;
 		} else {
 			$("#phoneyz").html("<font color='red'> </font>");
-			alert("ces")
 			/* --------------------------------------------------------------------- */
 			$.ajax({
 				type : "POST", // 用POST方式传输
@@ -229,11 +228,6 @@
 
 
 	/* --------------------------------------------------------------------- */
-
-
-
-
-
 	// 验证真实姓名 
 	function checkname() {
 		var email = $("#email").val();
@@ -248,13 +242,13 @@
 
 
 	//身份证验证
-	function checkEmail() {
-		var email = $("#email").val();
-		var realName = $("#realName").val();
-		if (!(/^[1-9][0-9]{5}([1][9][0-9]{2}|[2][0][0|1][0-9])([0][1-9]|[1][0|1|2])([0][1-9]|[1|2][0-9]|[3][0|1])[0-9]{3}([0-9]|[X])$/.test(email))) {
-			$("#emailyz").html("<font color='red'>请输入正确的身份证号</font>");
-			return;
-		} else {
+		function checkEmail() {
+			var email = $("#email").val();
+			var realName = $("#realName").val();
+			if (!(/^[1-9][0-9]{5}([1][9][0-9]{2}|[2][0][0|1][0-9])([0][1-9]|[1][0|1|2])([0][1-9]|[1|2][0-9]|[3][0|1])[0-9]{3}([0-9]|[X])$/.test(email))) {
+				$("#emailyz").html("<font color='red'>请输入正确的身份证号</font>");
+				return;
+			} else {
 			$("#emailyz").html("<font color='red'></font>");
 			if (realName == '') {
 				return;
@@ -350,7 +344,7 @@
 										alert("error");
 									}
 								});
-							}
+							}}
 						}
 					}
 				}

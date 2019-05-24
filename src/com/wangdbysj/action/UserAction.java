@@ -141,6 +141,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 				HttpSession session = ServletActionContext.getRequest().getSession();
 				session.setAttribute("loginName", u.getLoginName());
 				session.setAttribute("userId", u.getId());
+				session.setAttribute("phone", u.getPhone());
 				session.setAttribute("user", u);
 			} else {
 				json.put("result", 2);// 密码错误

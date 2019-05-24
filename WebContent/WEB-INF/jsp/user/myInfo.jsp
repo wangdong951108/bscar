@@ -77,7 +77,7 @@
 					${user.phone}
 				</div>	
 				<div> 
-					<span>电子邮箱&nbsp;&nbsp;</span>
+					<span>身份证号码&nbsp;&nbsp;</span>
 					${user.email}
 				</div>	
 				<div> 
